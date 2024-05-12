@@ -1,0 +1,12 @@
+# Byte-compiled / optimized / DLL files 
+__pycache__/ 
+*.py[cod]
+
+# Vscode
+.vscode/
+.vs/
+
+# Build
+build/
+
+imgui.ini

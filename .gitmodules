@@ -1,0 +1,21 @@
+[submodule "ext/glm"]
+	path = ext/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "ext/bvh"]
+	path = ext/bvh
+	url = git@github.com:madmann91/bvh.git
+[submodule "ext/tiny-cuda-nn"]
+	path = ext/tiny-cuda-nn
+	url = git@github.com:WeiPhil/tiny-cuda-nn.git
+[submodule "ext/tinygltf"]
+	path = ext/tinygltf
+	url = git@github.com:syoyo/tinygltf.git
+[submodule "ext/tinyobjloader"]
+	path = ext/tinyobjloader
+	url = git@github.com:tinyobjloader/tinyobjloader.git
+[submodule "ext/glfw"]
+	path = ext/glfw
+	url = git@github.com:glfw/glfw.git
+[submodule "ext/flip-cuda"]
+	path = ext/flip-cuda
+	url = git@github.com:WeiPhil/flip_cuda.git

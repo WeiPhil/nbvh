@@ -1,0 +1,189 @@
+{
+    "cuda_scene": {
+        "fb_size": [
+            1920,
+            1080
+        ],
+        "camera": {
+            "type": "perspective",
+            "yfov": 0.7853981852531433,
+            "matrix": [
+                0.28359198570251465,
+                -0.5326340198516846,
+                0.7974169850349426,
+                0.0,
+                0.0,
+                0.8315569758415222,
+                0.5554370284080505,
+                0.0,
+                -0.9589440226554871,
+                -0.15751700103282928,
+                0.23582300543785095,
+                0.0,
+                0.00184299994725734,
+                0.050255998969078064,
+                -0.7192429900169373,
+                1.0
+            ]
+        },
+        "scene_constants": {
+            "constant_metallic": 0.0,
+            "constant_roughness": 1.0,
+            "constant_specular": 0.0,
+            "ema_accumulate": false,
+            "ema_weight": 0.05000000074505806,
+            "emission_eval": true,
+            "envmap_eval": true,
+            "envmap_rotation": 285.0,
+            "envmap_strength": 1.0,
+            "force_constant_material": false,
+            "skylike_background": false
+        },
+        "envmap_filename": "photo_studio_loft_hall_4k.exr"
+    },
+    "neural_bvh_renderer": {
+        "bvh_module_type": "Path",
+        "validation_mode": "Full",
+        "neural_module": {
+            "max_depth": 3,
+            "pt_output_constants": {
+                "albedo_loss": "RelativeL2",
+                "albedo_loss_scale": 1.0,
+                "depth_epsilon": 0.20000000298023224,
+                "depth_learning_mode": "LocalT",
+                "depth_loss": "L1",
+                "depth_loss_scale": 1.0,
+                "fixed_depth_epsilon": 9.999999747378752e-06,
+                "normal_loss": "L1",
+                "normal_loss_scale": 1.0,
+                "output_albedo_dim": 3,
+                "output_albedo_linear_activation": false,
+                "output_depth_dim": 1,
+                "output_depth_linear_activation": false,
+                "output_network_dims": 8,
+                "output_normal_dim": 3,
+                "output_normal_linear_activation": true,
+                "output_visibility_dim": 1,
+                "primary_visibility_threshold": 0.5,
+                "secondary_visibility_threshold": 0.5,
+                "visibility_loss": "BinaryCrossEntropy",
+                "visibility_loss_scale": 1.0,
+                "visibility_masking_loss": true
+            },
+            "path_module_constants": {
+                "apply_russian_roulette": true,
+                "neural_metallic": 0.10000000149011612,
+                "neural_roughness": 0.20000000298023224,
+                "neural_specular": 0.20000000298023224,
+                "normal_epsilon_offset": 9.999999747378752e-05,
+                "output_mode": "NeuralPathTracing",
+                "rr_start_depth": 2
+            },
+            "bvh_module_constants": {
+                "antialias_direction": false,
+                "apply_encoding_trafo": false,
+                "input_network_dims": 9,
+                "input_segment_direction_dim": 0,
+                "input_segment_point_dim": 3,
+                "input_segment_points": 3,
+                "input_segment_points_dim": 9,
+                "merge_operator": false,
+                "segment_distribution": "EquidistantExterior"
+            },
+            "network": {
+                "activation": "ReLU",
+                "n_hidden_layers": 4,
+                "n_neurons": 64,
+                "network": "FullyFusedMLP",
+                "output_activation": "Sigmoid"
+            },
+            "optimizer": {
+                "absolute_decay": 0.0,
+                "adabound": false,
+                "beta1": 0.8999999761581421,
+                "beta2": 0.9990000128746033,
+                "decay_base": 0.33000001311302185,
+                "decay_interval": 2000,
+                "decay_start": 10000,
+                "epsilon": 9.99999993922529e-09,
+                "l2_reg": 9.99999993922529e-09,
+                "learning_rate": 0.009999999776482582,
+                "relative_decay": 0.0,
+                "type": "Adam"
+            },
+            "segment_encoding": {
+                "type": "HashGrid",
+                "hashgrid_options": {
+                    "base_resolution": 8,
+                    "hash": "CoherentPrime",
+                    "interpolation": "Linear",
+                    "log2_hashmap_size": 18,
+                    "n_features_per_level": 4,
+                    "n_levels": 8,
+                    "per_level_scale": 2.0,
+                    "stochastic_interpolation": false
+                },
+                "reduction": "Concatenation"
+            },
+            "direction_encoding": {
+                "type": "SphericalHarmonics",
+                "hashgrid_options": {
+                    "base_resolution": 8,
+                    "hash": "CoherentPrime",
+                    "interpolation": "Linear",
+                    "log2_hashmap_size": 18,
+                    "n_features_per_level": 4,
+                    "n_levels": 8,
+                    "per_level_scale": 2.0,
+                    "stochastic_interpolation": false
+                }
+            }
+        },
+        "batch_size": 262144,
+        "max_training_steps": 10000,
+        "max_accumulated_spp": 4096,
+        "training_step": 10000,
+        "base_config_name": "nodes_32940_hash_18_lvl_8_tsteps_10000",
+        "variant_config_name": "neural",
+        "run_optimisation": false,
+        "run_inference": false,
+        "continuous_reset": false,
+        "neural_bvh_min_depth": 0,
+        "bvh_constants": {
+            "backface_bounce_training": false,
+            "current_learned_lod": 6,
+            "ellipsoidal_bvh": false,
+            "fixed_node_dilation": 9.999999747378752e-06,
+            "ignore_neural_blas": false,
+            "inference_maxt_epsilon": 0.0010000000474974513,
+            "inference_mint_epsilon": 9.999999747378752e-05,
+            "leaf_boundary_sampling_ratio": 0.0,
+            "learning_maxt_epsilon": 0.0010000000474974513,
+            "learning_mint_epsilon": 0.0010000000474974513,
+            "log2_bvh_max_traversals": 0,
+            "loss_exposure": 2.0000000233721948e-07,
+            "max_training_bounces": 1,
+            "min_rr_survival_prob": 0.004999999888241291,
+            "node_extent_dilation": 9.999999747378752e-05,
+            "num_lods_learned": 1,
+            "rendered_lod": 0,
+            "rescale_ellipsoid": false,
+            "sample_cosine_weighted": true,
+            "sampling_bbox_scaling": 1.5,
+            "show_loss_heuristic": false,
+            "survival_probability_scale": 1.0,
+            "training_node_survival": true
+        },
+        "show_bvh": false,
+        "show_neural_node_losses": false,
+        "show_tree_cut_depth": false,
+        "tree_cut_learning": true,
+        "bvh_split_scheduler": {
+            "last_split_iteration": 3000,
+            "split_interval_scaling": 2.0,
+            "split_scaling": 2.5,
+            "splitting_interval": 40,
+            "start_split_num": 1
+        }
+    }
+}

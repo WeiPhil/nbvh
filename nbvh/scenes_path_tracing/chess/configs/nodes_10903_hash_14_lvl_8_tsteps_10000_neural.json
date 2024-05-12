@@ -1,0 +1,84 @@
+{
+    "cuda_scene": {
+        "fb_size": [
+            1920,
+            1080
+        ],
+        "camera": {
+            "matrix": [
+                0.283592,
+                -0.532634,
+                0.797417,
+                0.0,
+                0.0,
+                0.831557,
+                0.555437,
+                0.0,
+                -0.958944,
+                -0.157517,
+                0.235823,
+                0.0,
+                0.001843,
+                0.050256,
+                -0.719243,
+                1.0
+            ],
+            "yfov": 0.7853981633974483
+        },
+        "envmap_filename": "photo_studio_loft_hall_4k.exr",
+        "scene_constants": {
+            "envmap_strength": 1.0,
+            "envmap_rotation": 285.0,
+            "ema_accumulate": false,
+            "envmap_eval": true,
+            "emission_eval": true,
+            "skylike_background": false,
+            "sample_light": false
+        }
+    },
+    "neural_bvh_renderer": {
+        "bvh_module_type": "Path",
+        "validation_mode": "Full",
+        "base_config_name": "nodes_10903_hash_14_lvl_8_tsteps_10000",
+        "variant_config_name": "neural",
+        "max_training_steps": 10000,
+        "max_accumulated_spp": 4096,
+        "tree_cut_learning": true,
+        "bvh_constants": {
+            "rendered_lod": 0,
+            "num_lods_learned": 1
+        },
+        "bvh_split_scheduler": {
+            "last_split_iteration": 3000,
+            "split_scaling": 2.3,
+            "start_split_num": 1,
+            "splitting_interval": 50,
+            "split_interval_scaling": 2.0
+        },
+        "neural_module": {
+            "max_depth": 3,
+            "segment_encoding": {
+                "hashgrid_options": {
+                    "log2_hashmap_size": 14,
+                    "n_levels": 8
+                }
+            },
+            "path_module_constants": {
+                "neural_specular": 0.2,
+                "neural_metallic": 0.1,
+                "neural_roughness": 0.2
+            },
+            "bvh_module_constants": {
+                "segment_distribution": "EquidistantExterior",
+                "input_segment_direction_dim": 0,
+                "input_segment_points": 3
+            },
+            "pt_output_constants": {
+                "output_visibility_dim": 1,
+                "output_depth_dim": 1,
+                "output_albedo_dim": 3,
+                "output_normal_dim": 3
+            }
+        }
+    }
+}
