@@ -7,6 +7,9 @@ option(CUDA_DEBUG "Build cuda files with -G for nsight debugging" OFF)
 
 if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
   set(CMAKE_CUDA_ARCHITECTURES native)
+else()
+  # Hack to force tiny-cuda-nn to use the provided cuda architecture
+  set(ENV{TCNN_CUDA_ARCHITECTURES} ${CMAKE_CUDA_ARCHITECTURES})
 endif()
 
 if(NOT DEFINED CMAKE_CUDA_STANDARD)
