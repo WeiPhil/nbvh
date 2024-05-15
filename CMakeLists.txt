@@ -13,7 +13,11 @@ if(NOT DEFINED CMAKE_CUDA_STANDARD)
     set(CMAKE_CUDA_STANDARD 17)
     set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 endif()
- 
+
+set(CMAKE_CUDA_EXTENSIONS OFF)
+set(CUDA_LINK_LIBRARIES_KEYWORD PUBLIC)
+set(CMAKE_CUDA_RUNTIME_LIBRARY Shared)
+
 # ======== Tinyformat ======== #
 include_directories(ext/tinyformat)
 
@@ -29,6 +33,15 @@ endif ()
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake/")
 
 set(CUDA_COMPILE_DEFNS "-lineinfo;-O3;--use_fast_math;-rdc=true")
+
+# ====== Tiny Cuda NN ======== 
+set(TCNN_BUILD_BENCHMARK OFF CACHE BOOL "disable benchmarks")
+set(TCNN_BUILD_EXAMPLES OFF CACHE BOOL "disable examples")
+
+add_subdirectory(ext/tiny-cuda-nn)
+
+# Make sure we match the CUDA ARCHITECTURE CHOSEN BY tiny cuda nn
+set(CMAKE_CUDA_ARCHITECTURES ${TCNN_CUDA_ARCHITECTURES})
 
 # ====== OpenGL ========
 find_package(OpenGL REQUIRED) 
@@ -59,16 +72,6 @@ add_subdirectory(ext/bvh)
 
 # ====== LibBVH ========
 include_directories(${LIBBVH_INCLUDE_DIRS})
-
-# ====== Tiny Cuda NN ======== 
-set(TCNN_BUILD_BENCHMARK OFF CACHE BOOL "disable benchmarks")
-set(TCNN_BUILD_EXAMPLES OFF CACHE BOOL "disable examples")
-
-add_subdirectory(ext/tiny-cuda-nn)
-# include_directories(${TCNN_INCLUDE_DIRS})
-
-# Make sure we match the CUDA ARCHITECTURE CHOSEN BY tiny cuda nn
-set(CMAKE_CUDA_ARCHITECTURES ${TCNN_CUDA_ARCHITECTURES})
 
 # ====== GLM ======== 
 add_definitions(-DGLM_ENABLE_EXPERIMENTAL)
@@ -146,7 +149,7 @@ endif()
 # Precompile glm header which are often included
 target_precompile_headers(ntwr PRIVATE include/glm_pch.h)
  
-target_link_libraries(ntwr
+target_link_libraries(ntwr PUBLIC
   flip-cuda  
   bvh
   glfw

@@ -1,6 +1,6 @@
 # N-BVH: Neural ray queries with bounding volume hierarchies
 
-![Alt text](./nbvh/teaser.jpg "N-BVH Teaser")
+![Alt text](./scene_data/teaser.jpg "N-BVH Teaser")
 
 Source code of the paper "N-BVH: Neural ray queries with bounding volume hierarchies" by [Philippe Weier](https://weiphil.github.io/portfolio/), Alexander Rath, Élie Michel, Iliyan Georgiev, Philipp Slusallek, Tamy Boubekeur at SIGGRAPH 2024.
 
