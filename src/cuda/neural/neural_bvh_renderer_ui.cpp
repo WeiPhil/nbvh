@@ -101,9 +101,10 @@ namespace neural {
 
         int log2_batch_size = (int)std::log2(m_batch_size);
         if (ImGui::InputInt("Training batch size (log2)", &log2_batch_size)) {
-            true;
+            m_reset_learning_data = true;
             reset |= true;
-            m_batch_size = (int)pow(2, log2_batch_size);
+            // BATCH_SIZE_GRANULARITY must be at least 2^8 = 256
+            m_batch_size = (int)pow(2, max(8, log2_batch_size));
             // Only case where we actually change the batch size and therefore need to reinitialise the cuda backend
             // data used for learning as well
             reinitialise_bvh_learning_data(m_batch_size);
