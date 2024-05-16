@@ -53,6 +53,7 @@ namespace neural {
         build_and_upload_neural_bvh();
         reinitialise_neural_bvh_learning_states();
         reinitialise_tree_cut_learning_data(m_bvh_split_scheduler.m_start_split_num);
+        m_bvh_split_scheduler.update_stats_and_reset(m_neural_bvh.num_nodes, m_splits_graph, m_max_training_steps);
 
         load_next_config();
     }

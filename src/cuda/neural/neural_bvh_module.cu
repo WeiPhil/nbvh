@@ -296,7 +296,7 @@ namespace neural {
                                            ARRAY_SIZE(segment_distributions),
                                            m_bvh_module_const.segment_distribution)) {
                     changed_model = true;
-                                }
+                }
 
                 changed_model |= ImGui::InputInt("Segment points",
                                                  reinterpret_cast<int *>(&m_bvh_module_const.input_segment_points));
@@ -381,8 +381,15 @@ namespace neural {
 
                 ImGui::Unindent();
             }
+        } else {
+            ImGui::Spacing();
+            ImGui::Indent();
+            if ((m_segment_encoding == EncodingType::HashGrid || m_segment_encoding == EncodingType::DenseGrid) &&
+                ImGui::CollapsingHeader("Hashgrid Config##SegmentPoints", nullptr, ImGuiTreeNodeFlags_DefaultOpen)) {
+                changed_model |= hashgrid_encoding_ui(m_segment_points_hashgrid_options, std::string("SegmentPoints"));
+            }
+            ImGui::Unindent();
         }
-
         return changed_model;
     }
 

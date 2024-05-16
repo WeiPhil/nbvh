@@ -447,8 +447,6 @@ namespace neural {
         if (m_neural_tree_cut_data.d_ptr)
             m_neural_tree_cut_data.free();
 
-        logger(LogLevel::Info, "Reinitialising neural bvh learning data..");
-
         std::vector<NeuralBVH2Node> neural_nodes;
 
         neural_nodes.resize(m_neural_nodes_used);
@@ -501,12 +499,15 @@ namespace neural {
                 : min_traversed_lod;
 
         m_all_bvh_lods_assigned = m_bvh_const.current_learned_lod == 0;
-
-        logger(LogLevel::Info, "Done!");
     }
 
     void NeuralBVHRenderer::build_and_upload_neural_bvh()
     {
+        // Early exit for a common case to avoid log flooding
+        if (m_neural_bvh_nodes.num_elements() == 1 && m_neural_bvh_min_depth == 0) {
+            return;
+        }
+
         if (m_neural_bvh_nodes.d_ptr)
             m_neural_bvh_nodes.free();
         if (m_neural_tree_cut_data.d_ptr)
