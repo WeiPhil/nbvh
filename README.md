@@ -106,9 +106,21 @@ The created scene can then be exported as usual as GLTF file and loaded into the
 
 ## Controlling reconstruction quality, performance and memory
 
-The default configuration when opening a scene is to learn a tree cut that results in a N-BVH of about 2k nodes. While this might be enough for small scenes, very large scenes can easilly require more than 150k nodes for good quality. The target number of nodes in the N-BVH is best controlled via the `Split scaling` factor in the `BVH Split Scheduler` collapsing header. Note that increasing the number of nodes is mostly going to impact the performance rather than the memory footprint. Memory footprint is impacted most by the hashmap size (and number of features per level). The hashmap configuration can be found in the `Input Encoding` tab. Increasing the hashmap size can also increase quality, however, at a much smaller scale than increasing the node count. Therefore, we recomend first increasing the node count before tweaking the hashmap size as the later might drastically increase the memory consumption of the model. We recomend taking a look at our [Interactive Viewer](https://weiphil.github.io/portfolio/neural_bvh_viewer/) to get more intuition on the different configuration tradeoffs.
-<!-- ### Citation
+The default configuration when opening a scene is to learn a tree cut that results in a N-BVH of about 2k nodes. While this might be enough for small scenes, very large scenes can easilly require more than 150k nodes for good quality. 
+
+The target number of nodes in the N-BVH is best controlled via the `Split scaling` factor in the `BVH Split Scheduler` collapsing header. Note that increasing the number of nodes is mostly going to impact the performance rather than the memory footprint. Memory footprint is impacted most by the hashmap size (and number of features per level). The hashmap configuration can be found in the `Input Encoding` tab. Increasing the hashmap size can also increase quality, however, at a much smaller scale than increasing the node count. 
+
+We recomend first increasing the node count before tweaking the hashmap size as the later might drastically increase the memory consumption of the model. Check out our [Interactive Viewer](https://weiphil.github.io/portfolio/neural_bvh_viewer/) tp get more intuition on the different configuration tradeoffs.
+
+### Citation
 
 ```bibtex
-@article{}
-``` -->
+@inproceedings{Weier:2024:NeuralBVH,
+  author = {Philippe Weier and Alexander Rath and \'{E}lie Michel and Iliyan Georgiev and Philipp Slusallek and Tamy Boubekeur},
+  title = {N-BVH: Neural ray queries with bounding volume hierarchies},
+  booktitle = {ACM SIGGRAPH 2024 Conference Proceedings},
+  year = {2024},
+  doi = {10.1145/3641519.3657464},
+  isbn = {979-8-4007-0525-0/24/07}
+}
+```
