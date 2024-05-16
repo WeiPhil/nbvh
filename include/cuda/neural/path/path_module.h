@@ -346,7 +346,7 @@ namespace neural::path {
         std::shared_ptr<CudaBackend> m_cuda_backend;
 
         // The Neural BVH renderer is a good friend of the BVH module
-        friend class NeuralBVHRenderer;
+        friend class ntwr::neural::NeuralBVHRenderer;
     };
 }
 }

@@ -13,8 +13,6 @@
 
 #include <tiny-cuda-nn/loss.h>
 
-#include <format>
-
 namespace ntwr {
 namespace neural {
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cuda/neural/neural_bvh_module.h" 
+#include "cuda/neural/neural_bvh_module.h"
 #include "glm_pch.h"
 
 namespace ntwr {
@@ -244,7 +244,7 @@ namespace neural::prefiltering {
         std::shared_ptr<CudaBackend> m_cuda_backend;
 
         // The Neural BVH renderer is a good friend of the BVH module
-        friend class NeuralBVHRenderer;
+        friend class ntwr::neural::NeuralBVHRenderer;
     };
 
 }
