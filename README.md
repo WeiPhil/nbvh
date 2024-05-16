@@ -10,10 +10,17 @@ You can find the original paper and supplemental viewer on the [project webpage]
 
 We tested our implementation with the following configuration:
 
-- Visual Studio 17 2022 (Windows)
+Windows:
+- Visual Studio 17 2022
 - Cuda Compiler NVIDIA 12.0
 - Nvidia Driver 546.29
 - Cuda Architectures 86/89
+- RTX 3080 / RTX 4090
+Linux:
+- Ubuntu 22.04
+- Cuda Compiler NVIDIA 12.3
+- Nvidia Driver 545.29
+- Clang++ 14.0
 - RTX 3080 / RTX 4090
 
 ### Cloning the repository
@@ -39,6 +46,18 @@ cmake -G "Visual Studio 17 2022" -DCMAKE_CUDA_ARCHITECTURES=89 -A x64 -B build
 And build and run in Release mode using:
 ```bash
 cmake --build build --config Release && .\build\Release\ntwr.exe
+```
+
+### Linux
+
+From the nbvh project directory configure the project as follows (replace the cuda architecture with yours):
+
+```bash
+cmake -G Ninja -DCMAKE_CUDA_ARCHITECTURES=89 -B build
+```
+And build and run in Release mode using:
+```bash
+cmake --build build --config Release && ./build/ntwr
 ```
  
 ## Getting the scenes used in the paper
@@ -85,6 +104,9 @@ The process in Blender is as follows:
 
 The created scene can then be exported as usual as GLTF file and loaded into the renderer. An example Blender file for the Chess scene is provided in `nbvh\scenes_path_tracing\chess\chess.blend`. 
 
+## Controlling reconstruction quality, performance and memory
+
+The default configuration when opening a scene is to learn a tree cut that results in a N-BVH of about 2k nodes. While this might be enough for small scenes, very large scenes can easilly require more than 150k nodes for good quality. The target number of nodes in the N-BVH is best controlled via the `Split scaling` factor in the `BVH Split Scheduler` collapsing header. Note that increasing the number of nodes is mostly going to impact the performance rather than the memory footprint. Memory footprint is impacted most by the hashmap size (and number of features per level). The hashmap configuration can be found in the `Input Encoding` tab. Increasing the hashmap size can also increase quality, however, at a much smaller scale than increasing the node count. Therefore, we recomend first increasing the node count before tweaking the hashmap size as the later might drastically increase the memory consumption of the model. We recomend taking a look at our [Interactive Viewer](https://weiphil.github.io/portfolio/neural_bvh_viewer/) to get more intuition on the different configuration tradeoffs.
 <!-- ### Citation
 
 ```bibtex
