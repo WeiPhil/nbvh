@@ -16,6 +16,7 @@ Windows:
 - Nvidia Driver 546.29
 - Cuda Architectures 86/89
 - RTX 3080 / RTX 4090
+
 Linux:
 - Ubuntu 22.04
 - Cuda Compiler NVIDIA 12.3
