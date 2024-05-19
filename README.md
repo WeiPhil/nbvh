@@ -96,7 +96,7 @@ Scenes used for neural prefiltering depend on pre-trained prefilted appearance f
 
 ## Creating your own N-BVH compatible scene
 
-To render your own scene with our pipeline you will need to create your scene in Blender and export it to the GLTF format. While you will be able to open, optimise and render the scene as expected, our renderer will assume the entire scene is neural. To indicate wether an object should be rendered neurally or not we use two different [GLTF scenes](https://github.khronos.org/glTF-Tutorials/gltfTutorial/gltfTutorial_004_ScenesNodes.html), one for the entire scene and one containing only the neural parts of the scene. The easiest way to create the expected GLTF format is to create an additional scene node in Blender. 
+To render your own scene with our pipeline you will need to create your scene in Blender and export it to the GLTF format. While you will be able to open, optimise and render the scene as expected, our renderer will assume the entire scene is neural. To indicate weather an object should be rendered neurally or not we use two different [GLTF scenes](https://github.khronos.org/glTF-Tutorials/gltfTutorial/gltfTutorial_004_ScenesNodes.html), one for the entire scene and one containing only the neural parts of the scene. The easiest way to create the expected GLTF format is to create an additional scene node in Blender. 
 
 The process in Blender is as follows:
 - Create your scene in Blender as usual
