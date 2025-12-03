@@ -63,7 +63,7 @@ cmake --build build --config Release && ./build/ntwr
  
 ## Getting the scenes used in the paper
 
-The repository only ships with the Chess scene (`nbvh\scenes_path_tracing\chess\chess.gltf`). The other scenes used in the paper can be downloaded [from the University of Saarland Cloud Server](https://oc.cs.uni-saarland.de/owncloud/index.php/s/b33TTcX9ZCS2m2X). The folder contains:
+The repository only ships with the Chess scene (`nbvh\scenes_path_tracing\chess\chess.gltf`). The other scenes used in the paper can be downloaded [here](https://drive.google.com/drive/folders/1chzsNxj0mlb2PoLkV3gqMHHV8sBoETEo?usp=sharing). The folder contains:
 - Environment maps that are used across the different scenes (`hdris`) 
 - Scenes designed for the hybrid neural path tracing module (`scenes_path_tracing`)
 - Scenes used for the neural prefiltering module (`scenes_prefiltering`)
